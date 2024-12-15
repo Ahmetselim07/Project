@@ -52,7 +52,6 @@ const PaymentCard = ({ isVisible, onClose, title }) => {
           </Text>
           <View
             style={{
-              borderBottomWidth: 1,
               borderColor: "#ccc",
               marginVertical: 10,
               paddingBottom: 10,
@@ -67,80 +66,160 @@ const PaymentCard = ({ isVisible, onClose, title }) => {
           <Text style={{ marginTop: 10, fontWeight: "bold" }}>
             Payment Method
           </Text>
-
           {selectedMethod === "virtual" && (
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "flex-start",
+                justifyContent: "space-between",
                 marginTop: 20,
+
+                borderColor: "#ccc",
+                borderRadius: 10,
               }}
             >
-              <View
-                style={{
-                  height: 30,
-                  width: 50,
-                  borderWidth: 0.5,
-                  borderRadius: 6,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  borderColor: "grey",
-                }}
-              >
-                <Image
-                  source={require("../assets/images/gopay_icon.png")}
-                  style={{ height: 12, width: 12, marginRight: 3 }}
-                />
-                <Text style={{ fontSize: 10, fontWeight: "bold" }}>gopay</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    height: 30,
+                    width: 50,
+                    borderWidth: 0.5,
+                    borderRadius: 6,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    borderColor: "grey",
+                  }}
+                >
+                  <Image
+                    source={require("../assets/images/gopay_icon.png")}
+                    style={{ height: 12, width: 12, marginRight: 3 }}
+                  />
+                  <Text style={{ fontSize: 10, fontWeight: "bold" }}>
+                    gopay
+                  </Text>
+                </View>
+                <Text style={{ marginLeft: 10, fontWeight: "600" }}>
+                  8971 3190 0666
+                </Text>
               </View>
-              <Text style={{ marginLeft: 5, fontWeight: "600" }}>
-                8971 3190 0666
-              </Text>
-              <FontAwesome6
-                name="copy"
-                size={16}
-                color="#0C0A32"
-                style={{ marginLeft: 8 }}
-                onPress={() => Alert.alert("Copied", "Account number copied!")}
-              />
+              <TouchableOpacity
+                style={{ flexDirection: "row", alignItems: "center" }}
+              >
+                <Text style={{ color: "#7161EF", fontWeight: "600" }}>
+                  Change
+                </Text>
+                <AntDesign
+                  name="down"
+                  size={12}
+                  color="#7161EF"
+                  style={{ marginLeft: 5 }}
+                />
+              </TouchableOpacity>
             </View>
           )}
-
           {selectedMethod === "transfer" && (
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-                marginTop:10
+                marginTop: 20,
+                padding: 15,
+                borderWidth: 1,
+                borderColor: "#ccc",
+                borderRadius: 10,
+                backgroundColor: "#f9f9f9",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.1,
+                shadowRadius: 4,
+                elevation: 2,
               }}
             >
-              <Text style={{ fontWeight: "600", marginRight: 10 }}>IBAN:</Text>
-              <Text style={{ marginRight: 10, fontWeight: "bold" }}>
-                TR33 0006 1005 1978 6457 8413 26
-              </Text>
-              <FontAwesome6
-                name="copy"
-                size={16}
-                color="#0C0A32"
-                style={{ marginLeft: 8 }}
-                onPress={() =>
-                  Alert.alert("Copied", "IBAN copied to clipboard!")
-                }
-              />
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text
+                  style={{
+                    fontWeight: "600",
+                    marginRight: 10,
+                    fontSize: 16,
+                    color: "#333",
+                  }}
+                >
+                  IBAN:
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 16,
+                    color: "#444",
+                    letterSpacing: 1.2,
+                  }}
+                >
+                  TR33 0006 1005 1978 6457 8413 26
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  padding: 5,
+                  borderWidth: 1,
+                  borderColor: "#7161EF",
+                  borderRadius: 5,
+                }}
+              >
+                <Text
+                  style={{ color: "#7161EF", fontWeight: "600", fontSize: 12 }}
+                >
+                  Change
+                </Text>
+                <AntDesign
+                  name="down"
+                  size={12}
+                  color="#7161EF"
+                  style={{ marginLeft: 5 }}
+                />
+              </TouchableOpacity>
             </View>
           )}
 
           {selectedMethod === "card" && (
             <View>
               {selectedCard ? (
-                <View style={styles.cardDetailsContainer}>
-                  <Text style={styles.cardName}>{selectedCard.name}</Text>
-                  <Entypo name="credit-card" size={24} color="black" />
-                  <View style={styles.cardInfoContainer}>
-                    <Text style={styles.cardNumber}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    padding: 15,
+                    borderWidth: 1,
+                    borderColor: "#ccc",
+                    borderRadius: 10,
+                    marginVertical: 10,
+                    backgroundColor: "#f9f9f9",
+                  }}
+                >
+                  {/* Kredi Kartı İkonu */}
+                  <Entypo
+                    name="credit-card"
+                    size={40}
+                    color="#444"
+                    style={{ marginRight: 15 }}
+                  />
+
+                  {/* Kart Detayları */}
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: "bold",
+                        color: "#444",
+                      }}
+                    >
+                      {selectedCard.name}
+                    </Text>
+                    <Text style={{ fontSize: 16, color: "#333", marginTop: 5 }}>
                       **** **** **** {selectedCard.cardNumber.slice(-4)}
                     </Text>
                   </View>
@@ -213,7 +292,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-between",
     flex: 1,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 0.3,
   },
   cardDetailsContainer: {
     backgroundColor: "#f5f5f5",
@@ -221,7 +300,6 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
     marginBottom: 15,
-    
   },
   cardName: {
     fontSize: 18,
@@ -243,13 +321,13 @@ const styles = StyleSheet.create({
   downBody: {
     flex: 3,
     width: "100%",
-    borderBottomWidth:1
+    borderBottomWidth: 0.5,
   },
   topFooter: {
     flex: 2,
     width: "100%",
     backgroundColor: "#EAEEFF",
-    marginTop: 20,
+    marginTop: 40,
     borderRadius: 12,
   },
   downFooter: {

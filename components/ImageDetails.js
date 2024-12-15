@@ -4,6 +4,9 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import React from "react";
 import IconCard from "../components/IconCard";
@@ -38,7 +41,6 @@ const ImageDetails = ({
   footerTitle,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -48,6 +50,7 @@ const ImageDetails = ({
       {isModalVisible && (
         <BlurView intensity={50} style={styles.blur} tint="light"></BlurView>
       )}
+
       <View style={styles.imageView}>
         <ImageBackground
           source={assetName}
@@ -66,13 +69,12 @@ const ImageDetails = ({
 
             <View style={styles.leftIcons}>
               <View style={{ marginRight: 10 }}>
-              <TouchableOpacity onPress={navigation2}>
-                <IconCard
-                  IconComponent={MaterialIcons}
-                  iconName={"bookmark-outline"}
-                />
-              </TouchableOpacity>
-                
+                <TouchableOpacity onPress={navigation2}>
+                  <IconCard
+                    IconComponent={MaterialIcons}
+                    iconName={"bookmark-outline"}
+                  />
+                </TouchableOpacity>
               </View>
 
               <IconCard IconComponent={Feather} iconName={"more-horizontal"} />
@@ -104,107 +106,121 @@ const ImageDetails = ({
         </ImageBackground>
       </View>
       <View style={styles.bodyView}>
-        <View style={styles.halfBodyTopView}>
-          <Text style={styles.halfBodyTopText}>About Event</Text>
-        </View>
-        <View style={styles.halfBodyDownView}>
-          <Text style={styles.halfBodyDownText}>{text2}</Text>
-        </View>
-        <View style={styles.halfBodyTopView}>
-          <Text style={styles.halfBodyDownText2}>Available Tickets</Text>
-        </View>{" "}
-        */Üstteki ile birebir aynı olduğundan yeni style oluşturmadım./*
-        <View style={styles.buyingTicket}>
-          {/* İlk Bilet */}
-
-          <FooterCard
-            IconComponent={MaterialCommunityIcons}
-            iconName={"ticket-confirmation-outline"}
-            title="First Pre-Sale"
-            subtitle={Rp1}
-            rightComponent={
-              <View
-                style={{
-                  height: 30,
-                  width: 70,
-                  borderRadius: 12,
-                  backgroundColor: "#F8F8FA",
-                  justifyContent: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 12,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sold out
-                </Text>
-              </View>
-            }
-          />
-
-          {/* İkinci Bilet */}
-
-          <FooterCard
-            IconComponent={MaterialCommunityIcons}
-            iconName={"ticket-confirmation-outline"}
-            title="Second Pre-Sale"
-            subtitle={Rp2}
-            rightComponent={
-              <View style={styles.rightComponent}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.countText}>3</Text>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            }
-          />
-          <FooterCard
-            IconComponent={MaterialCommunityIcons}
-            iconName={"ticket-confirmation-outline"}
-            title="Third Pre-Sale"
-            subtitle={Rp3}
-            rightComponent={
-              <View style={styles.rightComponent}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.countText}>0</Text>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            }
-          />
-          <FooterCard
-            IconComponent={MaterialCommunityIcons}
-            iconName={"ticket-confirmation-outline"}
-            title="Second Pre-Sale"
-            subtitle="Rp100.000"
-            rightComponent={
-              <View style={styles.rightComponent}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.countText}>0</Text>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            }
-          />
-        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          style={{ flex: 1 }}
+        >
+          {/* ScrollView, yalnızca metin ve bilet bölümleri için eklendi */}
+          <ScrollView
+          showsVerticalScrollIndicator={false}
+            style={{ flex: 1 }}
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.halfBodyTopView}>
+              <Text style={styles.halfBodyTopText}>About Event</Text>
+            </View>
+            <View style={styles.halfBodyDownView}>
+              <Text style={styles.halfBodyDownText}>{text2}</Text>
+            </View>
+            <View style={styles.halfBodyTopView}>
+              <Text style={styles.halfBodyDownText2}>Available Tickets</Text>
+            </View>
+            <View style={styles.buyingTicket}>
+              {/* Bilet Satış Kartları */}
+              <FooterCard
+                IconComponent={MaterialCommunityIcons}
+                iconName={"ticket-confirmation-outline"}
+                title="First Pre-Sale"
+                subtitle={Rp1}
+                rightComponent={
+                  <View
+                    style={{
+                      height: 30,
+                      width: 70,
+                      borderRadius: 12,
+                      backgroundColor: "#E9E8ED",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Sold out
+                    </Text>
+                  </View>
+                }
+              />
+              <FooterCard
+                IconComponent={MaterialCommunityIcons}
+                iconName={"ticket-confirmation-outline"}
+                title="Second Pre-Sale"
+                subtitle={Rp2}
+                rightComponent={
+                  <View style={styles.rightComponent}>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>-</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.countText}>3</Text>
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>+</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                }
+              />
+              <FooterCard
+                IconComponent={MaterialCommunityIcons}
+                iconName={"ticket-confirmation-outline"}
+                title="Third Pre-Sale"
+                subtitle={Rp3}
+                rightComponent={
+                  <View style={styles.rightComponent}>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>-</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.countText}>0</Text>
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>+</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                }
+              />
+              <FooterCard
+                IconComponent={MaterialCommunityIcons}
+                iconName={"ticket-confirmation-outline"}
+                title="Third Pre-Sale"
+                subtitle={Rp3}
+                rightComponent={
+                  <View style={styles.rightComponent}>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>-</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.countText}>0</Text>
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>+</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                }
+              />
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </View>
       <View style={styles.footerButtonContainer}>
         <TouchableOpacity style={styles.buyTicketButton} onPress={toggleModal}>
@@ -318,9 +334,11 @@ const styles = StyleSheet.create({
   },
   halfBodyTopView: {
     flex: 0.8,
+    marginBottom: 20, // Altına boşluk eklendi
   },
   halfBodyDownView: {
     flex: 2,
+    marginBottom: 20, // Altına boşluk eklendi
   },
   buyingTicket: {
     flex: 4,
@@ -336,6 +354,7 @@ const styles = StyleSheet.create({
   halfBodyDownText2: {
     fontSize: 20,
     fontWeight: "bold",
+    
   },
   button: {
     width: 30,

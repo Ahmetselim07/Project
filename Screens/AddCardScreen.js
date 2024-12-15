@@ -20,22 +20,7 @@ const AddCardScreen = ({ navigation }) => {
     name: "",
   });
   const [isFlipped, setIsFlipped] = useState(false);
-  const showExpiry = () => {
-    if (isFlipped == true) {
-      <Text
-        style={{
-          position: "absolute",
-          bottom: 40,
-          right: 20,
-          fontSize: 16,
-          fontWeight: "bold",
-          color: "white",
-        }}
-      >
-        {cardDetails.expiry || "MM/YY"}
-      </Text>;
-    }
-  };
+  
 
   // Kart numarasını dörtlü gruplar halinde formatlar
   const formatCardNumber = (number) => {
@@ -89,11 +74,11 @@ const AddCardScreen = ({ navigation }) => {
       <View style={styles.cardPreviewContainer}>
         <CreditCard
           number={cardDetails.cardNumber || "XXXX XXXX XXXX XXXX"} // Dörtlü gruplar halinde göster
-          expiry={cardDetails.expiry || "MM/YY"} // Ay ve yıl formatında göster
           cvc={cardDetails.cvc || "CVV"}
           name={cardDetails.name || "Cardholder Name"}
-          brand="visa"
+          expiry={cardDetails.expiry || "MM/YY"} // Ay ve yıl formatında göster
           flipped={isFlipped}
+          
         />
       </View>
 
@@ -127,22 +112,6 @@ const AddCardScreen = ({ navigation }) => {
         keyboardType="number-pad"
       />
 
-      <View style={styles.column}>
-        <Text style={styles.inputLabel}>CVC</Text>
-        <TextInput
-          placeholder="123"
-          style={styles.input}
-          value={cardDetails.cvc}
-          onChangeText={(text) => {
-            if (text.length <= 3) {
-              setCardDetails({ ...cardDetails, cvc: text });
-              setIsFlipped(true); // CVC girilirken kartın arka yüzünü göster
-            }
-          }}
-          keyboardType="number-pad"
-          secureTextEntry
-        />
-      </View>
       <View style={styles.column}>
         <Text style={styles.inputLabel}>CVC</Text>
         <TextInput

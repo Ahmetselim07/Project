@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 8,
     
-    height: "30%", // Yükseklik
+    height:70,
     width: "100%",
   },
   leftSection: {

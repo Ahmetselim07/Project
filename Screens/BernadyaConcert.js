@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const image1 = require("../assets/images/image1.jpg");
 
-const BernadyaConcert = ({}) => {
+const BernadyaConcert = ({navigation}) => {
   
   return (
     <ImageDetails

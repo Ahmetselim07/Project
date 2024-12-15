@@ -6,9 +6,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
 
 const MoshingFestDetails = ({navigation}) => {
-  const image2 = require('../assets/images/image2.jpeg')
+  const image2 = require('../assets/images/image2.jpg')
   return (
-    
       <ImageDetails
         navigation={() => navigation.navigate('Home')} 
         assetName={image2}

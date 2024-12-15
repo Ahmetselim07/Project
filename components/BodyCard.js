@@ -17,7 +17,7 @@ export default BodyCard
 const styles = StyleSheet.create({
   container: {
     height: 40,
-    width: 90,
+    width: 80,
     flexDirection: "row",
     backgroundColor: "#434140",
     borderRadius:20,

@@ -71,6 +71,7 @@ const HomePage = ({navigation}) => {
               text={"Food"}
               iconName={"food-fork-drink"}
             />
+            
           </View>
         </ScrollView>
         <View style={styles.bodyTextView2}>
@@ -90,7 +91,7 @@ const HomePage = ({navigation}) => {
             />
             <CustomEventCard
               onPress={() => navigation.replace("MoshingFest")}
-              imageSource={require("../assets/images/image2.jpeg")} // Arka plan resmi
+              imageSource={require("../assets/images/image2.jpg")} // Arka plan resmi
               month={"Aug"}
               date="24" // Tarih
               title="Moshing Fest 2024" // Başlık
